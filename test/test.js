@@ -2,6 +2,28 @@
 var assert = require('assert');
 var LFUCache = require('../');
 
+var keyValueFixtures = {
+    'a': '1',
+    'b': '2',
+    'c': '3',
+    'd': '4',
+    'e': '5',
+    'f': '6',
+    'g': '7',
+    'h': '8',
+    'i': '9',
+    'j': '10'
+};
+
+function putFixturesIntoCache(cache, size) {
+    Object.keys(keyValueFixtures).forEach(function (key) {
+         cache.put(key, keyValueFixtures[key]);
+         if (keyValueFixtures[key] >= size) {
+             return false;
+         }
+    });
+}
+
 describe('LFUCache', function () {
 
     it('should return cached value', function () {
@@ -60,7 +82,7 @@ describe('LFUCache', function () {
         assert.equal(cache.get('c'), '3');
     });
     
-    // This tests that head set is removed when it hits 0 length.
+    // This tests that head frequency set is removed when it hits 0 length.
     it('should correctly evict >0 frequencies', function () {
         var cache = new LFUCache(2);
         cache.put('a', '1');
@@ -101,6 +123,28 @@ describe('LFUCache', function () {
         assert.equal(cache.get('d'), '4');
     });
     
+    it('should remove LFU of ten', function () {
+        var cache = new LFUCache(10);
+        putFixturesIntoCache(cache, 10);
+        // Access all but e once
+        cache.get('a');
+        cache.get('b');
+        cache.get('c');
+        cache.get('d');
+        // e is missing!
+        cache.get('f');
+        cache.get('g');
+        cache.get('h');
+        cache.get('i');
+        cache.get('j');
+
+        // Then push k and check that e is evicted.
+        cache.put('k', '11');
+        assert.equal(cache.get('a'), '1');
+        assert.equal(cache.get('e'), null);
+        assert.equal(cache.get('j'), '10');
+    });
+
     it('should empty cache on flush', function () {
         var cache = new LFUCache(2);
         cache.put('a', '1');
@@ -120,5 +164,4 @@ describe('LFUCache', function () {
         assert.equal(cache.get('a'), '1');
         assert.equal(cache.get('b'), '2');
     });
-
 });

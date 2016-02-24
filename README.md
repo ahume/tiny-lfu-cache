@@ -2,13 +2,13 @@
 
 > Simple LFU cache. put and get.
 
+Suitable for use in browsers and Node.js.
 
 ## Install
 
 ```sh
 $ npm install --save tiny-lfu-cache
 ```
-
 
 ## Usage
 
@@ -38,8 +38,7 @@ npm test
 
 ## License
 
-MIT © [Andy Hume](2015)
-
+MIT © [Andy Hume](2016)
 
 [npm-image]: https://badge.fury.io/js/tiny-lfu-cache.svg
 [npm-url]: https://npmjs.org/package/tiny-lfu-cache
