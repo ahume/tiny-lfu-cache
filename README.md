@@ -38,7 +38,7 @@ npm test
 
 ## License
 
-MIT © [Andy Hume](2016)
+MIT © [Andy Hume](2016) 
 
 [npm-image]: https://badge.fury.io/js/tiny-lfu-cache.svg
 [npm-url]: https://npmjs.org/package/tiny-lfu-cache
