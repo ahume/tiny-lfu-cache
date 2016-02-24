@@ -25,7 +25,7 @@ cache.flush(); // Empties the cache
 
 ### LFU Eviction Policy
 
-Once the cache reaches its maximum size, the least frequently used (LFU) item is removed.
+Once the cache reaches its maximum size, the least frequently used (LFU) item is evicted.
 
 If items in the cache have equal frequency of use, then the least recently used (LRU) item is evicted.
 
