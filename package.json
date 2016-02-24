@@ -1,6 +1,6 @@
 {
   "name": "tiny-lfu-cache",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Simple LFU cache. put and get.",
   "author": {
     "name": "Andy Hume",
