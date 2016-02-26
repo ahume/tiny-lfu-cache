@@ -13,7 +13,7 @@ $ npm install --save tiny-lfu-cache
 ## Usage
 
 ```js
-var LRUCache = require('tiny-lfu-cache');
+var LFUCache = require('tiny-lfu-cache');
 
 var maxSize = 100;
 var cache = new LFUCache(maxSize);
